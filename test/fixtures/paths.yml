@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyText
+  status: 1
+  observation: MyString
+  breadcrumb: one
+
+two:
+  description: MyText
+  status: 1
+  observation: MyString
+  breadcrumb: two

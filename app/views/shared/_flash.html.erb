@@ -1,0 +1,21 @@
+<% if flash[:notice] %>
+	<script>
+		$.notify({
+			message: "<%= notice %>"
+		},{
+			type: 'success'
+		});
+	</script>
+  </div>
+<% end %>
+
+<% if flash[:alert] %>
+	<script>
+		$.notify({
+			message: "<%= notice %>"
+		},{
+			type: 'danger'
+		});
+	</script>
+  </div>
+<% end %>

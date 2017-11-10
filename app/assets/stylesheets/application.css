@@ -1,0 +1,40 @@
+/*
+ *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+ *= require_self
+ *= require bootstrap.min
+ *= require animate.min
+ *= require paper-dashboard.css
+ *= require themify-icons
+
+ *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+
+*/
+
+.best_in_place:before
+{
+	padding-right:10px;
+	font-family: FontAwesome;
+	content: "\f040";
+	color:#229b44;
+}
+
+.table.dataTable thead .sorting:after {
+	padding-right:10px;
+	font-family: FontAwesome;
+	content: "\f07d";
+	color:#229b44;
+}
+
+table.dataTable thead .sorting_asc:after {
+	padding-right:10px;
+	font-family: FontAwesome;
+	content: "\f175";
+	color:#229b44;
+}
+
+table.dataTable thead .sorting_desc:after {
+	padding-right:10px;
+	font-family: FontAwesome;
+	content: "\f176";
+	color:#229b44;
+}

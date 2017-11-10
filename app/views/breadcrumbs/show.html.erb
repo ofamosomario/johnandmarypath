@@ -1,0 +1,87 @@
+<%= render 'shared/settings' , path_name: 'Caminhos/Visualizar' %>
+<div class="content">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="content">
+        <div class="pull-right">
+          <%= link_to 'Voltar', breadcrumbs_path , class: 'btn btn-dark' , :"data-turbolinks" => false %>
+        </div>
+      </div>
+      <div class="header">
+          <h4 class="title"><%=@breadcrumb.name%></h4>
+      </div>
+      <div class="content">
+        <div class="row">
+          <div class="col-md-4">
+            <strong>Criado por:</strong>
+            <br />
+            <%=@breadcrumb.user_created.full_name %>
+          </div>
+          <div class="col-md-4">
+            <strong>Testado por:</strong>
+            <br />
+            <%=@breadcrumb.user_tested.full_name %>
+          </div>
+          <div class="col-md-4">
+            <h3 style="margin-top:0; text-align: center">Happiness path?</h3>
+            <br />
+            <center>
+              <% 
+                @working = @breadcrumb.paths.where(status: 2).count
+                @total = @breadcrumb.paths.count
+              %>
+              <% if @working == @total %>
+                <%=image_tag('ok.png')%>
+              <% else @working != @total %>  
+                <%=image_tag('fail.png')%>
+              <% end %>
+            </center>
+          </div>
+          <div class="col-md-12">
+            <strong>Descrição:</strong>
+            <br />
+            <%=@breadcrumb.name%>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="content">
+        <div class="row">
+          <div class="header" style="padding-top: 0">
+              <h4 class="title" style="margin: 0">Caminho</h4>
+          </div>
+          <hr />
+          <div class="col-md-12">
+            <% @breadcrumb.paths.each do |path| %>
+              <div class='row'>
+                <div class="col-md-9">
+                  <i class="fa fa-arrow-circle-right" aria-hidden="true"></i><strong>Descrição:</strong>
+                  <br />
+                  <%=path.description %>
+                </div>
+                <div class="col-md-3">
+                  <i class="fa fa-arrow-circle-right" aria-hidden="true"></i><strong>Status:</strong>
+                  <br />
+                  <%= best_in_place path, :status, as: :select, url: update_paths_nested_path(path), html_attrs: {class: 'form-control string best_in_place'}, collection: Breadcrumb.statuses.keys
+                     %>
+                </div>
+                <div class="col-md-12">
+                  <i class="fa fa-arrow-circle-right" aria-hidden="true"></i><strong>Observação:</strong>
+                  <br />
+                  <%= best_in_place path, :observation, as: :input, url: update_paths_nested_url(path), html_attrs: {class: 'form-control string best_in_place'}
+                     %>
+                </div>
+              </div>
+              <hr />
+            <% end %>
+          </div>
+          <div class="content">
+            <div class="pull-right">
+              <%= link_to 'Voltar', breadcrumbs_path , class: 'btn btn-dark' , :"data-turbolinks" => false %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

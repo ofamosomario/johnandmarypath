@@ -1,0 +1,64 @@
+<%= render 'shared/settings' , path_name: 'Caminhos' %>
+<div class="content">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="header">
+          <h4 class="title">Lista de caminhos</h4>
+      </div>
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="content table-responsive table-full-width">
+              <table id="datatable" class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Data</th>
+                    <th>Criado por</th>
+                    <th>Testado por</th>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Progresso</th>
+                    <th style="width:100px">Ações</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <% @breadcrumbs.each do |breadcrumb| %>
+                    <tr>
+                      <td><%= breadcrumb.code %></td>
+                      <td><%= l breadcrumb.created_at, format: :short %></td>
+                      <td><%= breadcrumb.user_created.full_name %></td>
+                      <td><%= breadcrumb.user_tested.full_name %></td>
+                      <td><%= breadcrumb.name %></td>
+                      <td><%= breadcrumb.description %></td>
+                      <td>
+                        <% 
+                          @working = breadcrumb.paths.where(status: 2).count
+                          @total = breadcrumb.paths.count
+                        %>
+                        <strong>Total:</strong> <%=@total%>
+                        <br />
+                        <strong>Funcionando:</strong> <%=@working%>
+                      </td>
+                      <td>
+                        <%= link_to '<btn class="btn btn-xs btn-default btn-icon"><i class="fa fa-eye"></i></btn>'.html_safe, breadcrumb %>
+                        <% if current_user.id == breadcrumb.user_created_id %>
+                          <%= link_to '<btn class="btn btn-xs btn-success btn-icon"><i class="fa fa-pencil"></i></btn>'.html_safe, edit_breadcrumb_path(breadcrumb) %>  
+                          <%= link_to '<btn class="btn btn-xs btn-danger btn-icon"><i class="fa fa-trash"></i></btn>'.html_safe, breadcrumb, method: :delete, data: { confirm: 'Are you sure?' } %>
+                        <% end %>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+            <hr />
+            <%= link_to 'Novo registro', new_breadcrumb_path , class: 'btn btn-dark' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render 'shared/flash', flash: flash %>

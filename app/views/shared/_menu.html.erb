@@ -1,0 +1,22 @@
+<div class="sidebar" data-background-color="white" data-active-color="danger">
+    <div class="sidebar-wrapper">
+        <div class="logo">
+            <a href="<%=dashboard_path%>" class="simple-text">
+                <strong>Prosas</strong> Quality Control
+            </a>
+        </div>
+
+        <ul class="nav">
+            <li>
+                <%= link_to '<i class="fa fa-television" aria-hidden="true"></i> <p>Dashboard</p>'.html_safe, dashboard_path, :"data-turbolinks" => false %>
+            </li>
+            <li>
+                <%= link_to '<i class="fa fa-bicycle" aria-hidden="true"></i> <p>Caminhos</p>'.html_safe, breadcrumbs_path, :"data-turbolinks" => false %>
+            </li>
+            <hr />
+            <li>
+                <%= link_to '<i class="fa fa-sign-out" aria-hidden="true"></i> <p>Sair</p>'.html_safe, destroy_user_session_path, method: :delete %>
+            </li>
+        </ul>
+    </div>
+</div>
